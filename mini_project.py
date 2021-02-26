@@ -20,7 +20,7 @@ for x in range(len(text_list)):
     if re.fullmatch(Search_key,text_list[x],re.M | re.I):
         count+=1
         write_file.write(text_list[x-1]+' '+text_list[x]+' '+text_list[x+1]+'\n')
-       
+        
        
        
 
