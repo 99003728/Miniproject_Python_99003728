@@ -1,27 +1,75 @@
 import re
-smt=''
-count=0
-Search_key=input("Enter Search Key\n")
-file_name=Search_key+'.txt'
-write_file=open(file_name,'w')
-read_file=open("Input.txt",'r')
-read_file1=read_file.readlines()
 
-for line in read_file1:
-    smt+=line
-new_str1=re.sub('\W', ' ', smt) 
-new_str=re.sub(' +',' ',new_str1)
-write_file1=open('abd.txt','w')
-aa=" "
-text_list=new_str.split(" ")
-aa=aa.join(text_list)
-write_file1.write(str(aa))
-for x in range(len(text_list)):
-    if re.fullmatch(Search_key,text_list[x],re.M | re.I):
-        count+=1
-        write_file.write(text_list[x-1]+' '+text_list[x]+' '+text_list[x+1]+'\n')
-        
-       
-       
+import os
+ 
 
-write_file.write('Total count of '+Search_key+' in input file is '+str(count))
+class Classfirst:
+
+    def __init__(self):
+
+        self.nos =input( "number of times keyword want to search:\n")
+
+class Searchclass(Classfirst):
+
+    def function_search_writefile(self):
+
+        for _ in range(int(self.nos)):  
+
+            smt=''
+
+            count=0
+
+            Search_key=input("Enter Search Key\n")
+
+            file_name=Search_key+'.txt'
+
+            write_file=open(file_name,'w')
+ 
+
+            read_file=open("Input.txt",'r')
+
+            read_file1=read_file.readlines()
+ 
+
+            for line in read_file1:
+
+                smt+=line
+
+            smt=re.sub('\W+',' ',smt)
+
+            newstr=smt.split(' ')
+
+            for x in range(len(newstr)):
+
+                if newstr[x].lower() == Search_key.lower():
+
+                    write_file.write(newstr[x-1]+' '+newstr[x]+' '+newstr[x+1]+'\n')
+
+                    count+=1
+
+            
+
+            
+
+            if count != 0:
+
+                write_file.write('Total count of '+Search_key+' in input file is '+str(count))
+
+            write_file.close()
+
+            if count == 0:
+
+                print("Keyword not found in the file\n")
+
+                if os.path.isfile(file_name):
+
+                    os.remove(file_name)
+
+            write_file.close()
+
+            read_file.close()
+ 
+
+clas_object = Searchclass()
+
+clas_object.function_search_writefile()
